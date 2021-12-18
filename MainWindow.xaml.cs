@@ -13,6 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data;
+using MySql.Data;
+using MySql.Data.MySqlClient;
 
 namespace NewProject
 {
@@ -26,6 +29,7 @@ namespace NewProject
             InitializeComponent();
 
             this.DataContext = new WindowViewModel(this);
+
         }
     }
 }

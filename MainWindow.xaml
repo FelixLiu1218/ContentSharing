@@ -5,10 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewProject"
         mc:Ignorable="d"
-        x:Name="AppWindow"
+        MinWidth="800"
+        MinHeight="600"
         Title="MainWindow" Height="700" Width="1000">
 
     <Grid Background="{StaticResource WordBlueBrush}">
-        <Frame x:Name="MainFrame" Content="{Binding CurrentPage,Converter={local:ApplicationPageValueConverter}}" />
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Frame Grid.Column="1" x:Name="MainFrame" Content="{Binding CurrentPage,Converter={local:ApplicationPageValueConverter}}" />
+
+        <!-- main background -->
+        <Border Background="{StaticResource ForegroundLightBrush}">
+            <!-- Content -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+            </Grid>
+        </Border>
     </Grid>
 </Window>

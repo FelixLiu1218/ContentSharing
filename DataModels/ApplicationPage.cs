@@ -12,5 +12,10 @@ namespace NewProject
         /// the initial login page
         /// </summary>
         Login =0,
+
+        /// <summary>
+        /// the chat page
+        /// </summary>
+        Chat = 1,
     }
 }

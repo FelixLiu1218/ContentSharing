@@ -188,6 +188,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\Font Awesome.otf" />
     <None Include="README\README.md" />
     <Resource Include="Fonts\Caskaydia Cove Nerd Font Complete Mono.ttf" />
     <None Include="packages.config" />

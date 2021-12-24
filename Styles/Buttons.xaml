@@ -36,17 +36,18 @@
                         <Grid>
                             <TextBlock 
                                 Text="{TemplateBinding Content}" 
+                                Visibility="{TemplateBinding local:IsBusyProperty.Value,Converter={local:BooleanToVisiblityConverter}}"
                                 Focusable="False" 
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 Margin="{TemplateBinding Padding}" 
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 
-                            <TextBlock
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                            <TextBlock Style="{StaticResource SpinningText}"
+                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter},ConverterParameter=True}"
-                                Text="Busy"/>
+                                Visibility="{TemplateBinding local:IsBusyProperty.Value, Converter={local:BooleanToVisiblityConverter},ConverterParameter=True}">
+                            </TextBlock>
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>

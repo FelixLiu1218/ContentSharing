@@ -51,7 +51,6 @@
         
         <Setter Property="Padding" Value="10" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeLarge}" />
-        <Setter Property="" Value="{StaticResource ForegroundDarkBrush}" />
         <Setter Property="Margin" Value="0 0 0 10" />
         <Setter Property="BorderThickness" Value="0 0 0 1" />
 

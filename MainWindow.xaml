@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:NewProject"
         mc:Ignorable="d"
         x:Name="AppWindow"
-        Title="MainWindow" Height="700" Width="700">
-    
-    <Grid Background="{StaticResource ForegroundLightBrush}">
+        Title="MainWindow" Height="700" Width="1000">
+
+    <Grid Background="{StaticResource WordBlueBrush}">
         <Frame x:Name="MainFrame" Content="{Binding CurrentPage,Converter={local:ApplicationPageValueConverter}}" />
     </Grid>
 </Window>

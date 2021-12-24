@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace NewProject.ValueConverters
+namespace NewProject
 {
     public abstract class BaseValueConverter<T> : MarkupExtension, IValueConverter
         where T : class,new()

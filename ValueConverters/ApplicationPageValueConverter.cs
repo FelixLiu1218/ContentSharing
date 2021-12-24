@@ -5,9 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NewProject.ValueConverters;
-using NewProject.DataModels;
-using NewProject.Pages;
 
 namespace NewProject
 {

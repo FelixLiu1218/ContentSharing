@@ -1,14 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib">
-    <FontFamily x:Key="Caskaydia">pack://application;,,,/Fonts/#CaskaydiaCove Nerd Font Mono</FontFamily>
+    
     <FontFamily x:Key="FontAwesome">pack://application;,,,/Fonts/#Font Awesome 5 Free Solid</FontFamily>
+    <FontFamily x:Key="Arial">pack://application;,,,/Fonts/#Arial</FontFamily>
 
     <Style TargetType="{x:Type Control}" x:Key="BaseStyle">
-        <Setter Property="FontFamily" Value="{StaticResource Caskaydia}" />
+        <Setter Property="FontFamily" Value="{StaticResource Arial}" />
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="BaseTextBlockStyle">
-        <Setter Property="FontFamily" Value="{StaticResource Caskaydia}" />
+        <Setter Property="FontFamily" Value="{StaticResource Arial}" />
     </Style>
     
     

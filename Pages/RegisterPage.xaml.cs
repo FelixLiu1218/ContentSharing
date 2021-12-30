@@ -10,13 +10,16 @@ using NewProject.Core;
 namespace NewProject
 {
     /// <summary>
-    /// ChatPage.xaml 的互動邏輯
+    /// RegisterPage.xaml 的互動邏輯
     /// </summary>
-    public partial class ChatPage : BasePage<LoginViewModel>
+    public partial class RegisterPage : BasePage<LoginViewModel>,IHavePassword
     {
-        public ChatPage()
+        public RegisterPage()
         {
             InitializeComponent();
         }
+
+        //the secure password for this login page
+        public SecureString SecurePassword  => PasswordText.SecurePassword;
     }
 }

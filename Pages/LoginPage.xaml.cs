@@ -5,6 +5,7 @@ using System.Windows;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Security;
+using NewProject.Core;
 
 namespace NewProject
 {

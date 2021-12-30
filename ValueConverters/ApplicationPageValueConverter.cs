@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NewProject.Core;
 
 namespace NewProject
 {
@@ -19,6 +20,8 @@ namespace NewProject
                     return new LoginPage();
                 case ApplicationPage.Chat:
                     return new ChatPage();
+                case ApplicationPage.Register:
+                    return new RegisterPage();
                 default:
                     Debugger.Break();
                     return null;

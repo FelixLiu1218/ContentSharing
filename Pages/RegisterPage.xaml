@@ -1,4 +1,4 @@
-﻿<local:BasePage x:TypeArguments="core:LoginViewModel" x:Class="NewProject.LoginPage"
+﻿<local:BasePage x:TypeArguments="core:LoginViewModel" x:Class="NewProject.RegisterPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
       x:Name="Page"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="700"
-      Title="LoginPage">
+      Title="RegisterPage">
 
 
     <Border Background="{StaticResource WordBlueBrush}">
@@ -24,7 +24,7 @@
                             Margin="50 50 50 0">
 
                         <StackPanel>
-                            <TextBlock Text="ログイン" FontSize="{StaticResource FontSizeXXXXLarge}"
+                            <TextBlock Text="Sign Up" FontSize="{StaticResource FontSizeXXXXLarge}"
                                    FontFamily="{StaticResource Arial}"
                                    Foreground="{StaticResource WordBlueBrush}"/>
 
@@ -46,7 +46,7 @@
 
 
                             <Button 
-                                    Content="次へ"
+                                    Content="Register"
                                     local:IsBusyProperty.Value ="{Binding LoginIsRunning}"
                                     HorizontalAlignment="Center" 
                                     Command="{Binding LoginCommand}"
@@ -56,10 +56,7 @@
 
                     </Border>
 
-                    <Button Style="{StaticResource TextButton}"
-                            Command="{Binding RegisterCommand}"
-                            Content="アカウントを作成する"
-                            HorizontalAlignment="Center"/>
+                    <Button Style="{StaticResource TextButton}"  Content="すでにアカウントを持っている" HorizontalAlignment="Center"/>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

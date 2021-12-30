@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewProject.Core;
+using System;
 using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
@@ -40,7 +41,7 @@ namespace NewProject
             mViewModel = value;
 
             //set the data context for this page
-            this.DataContext = mViewModel;
+            DataContext = mViewModel;
         }
     }
 
@@ -50,16 +51,17 @@ namespace NewProject
 
     public BasePage()
     {
-        if (this.PageLoadAnimation != PageAnimation.None)
+
+        if (PageLoadAnimation != PageAnimation.None)
         {
-            this.Visibility = Visibility.Collapsed;
+            Visibility = Visibility.Collapsed;
         }
 
 
-        this.Loaded += BasePage_Loaded;
+        Loaded += BasePage_Loaded;
         
         //default view model
-        this.ViewModel = new VM();
+        ViewModel = new VM();
     }
 
     #endregion
@@ -73,14 +75,14 @@ namespace NewProject
 
     public async Task AnimateIn()
     {
-        if (this.PageLoadAnimation == PageAnimation.None) return;
+        if (PageLoadAnimation == PageAnimation.None) return;
 
-        switch (this.PageLoadAnimation)
+        switch (PageLoadAnimation)
         {
             case PageAnimation.SlideAndFadeInFromRight:
 
                 //Start the animation
-                await this.SlideAndFadeInFromRight(this.SlideSeconds * 2);
+                await this.SlideAndFadeInFromRight(SlideSeconds * 2);
 
                 break;
         }
@@ -88,14 +90,14 @@ namespace NewProject
 
     public async Task AnimateOut()
     {
-        if (this.PageUnloadAnimation == PageAnimation.None) return;
+        if (PageUnloadAnimation == PageAnimation.None) return;
 
-        switch (this.PageUnloadAnimation)
+        switch (PageUnloadAnimation)
         {
             case PageAnimation.SlideAndFadeOutToLeft:
 
                 //Start the animation
-                await this.SlideAndFadeOutToLeft(this.SlideSeconds * 2);
+                await this.SlideAndFadeOutToLeft(SlideSeconds * 2);
 
                 break;
         }

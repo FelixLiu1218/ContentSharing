@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Data;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using NewProject.Core;
 
 namespace NewProject
 {
@@ -23,11 +24,12 @@ namespace NewProject
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
 
-            this.DataContext = new WindowViewModel(this);
+            DataContext = new WindowViewModel(this);
 
         }
     }

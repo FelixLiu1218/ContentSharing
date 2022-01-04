@@ -12,23 +12,20 @@ namespace NewProject
     {
         #region Private member
 
-        private Window mWindow;
+        private Window _window;
 
         #endregion
 
         #region public Properties
 
-        /// <summary>
-        /// the current page of the application
-        /// </summary>
-        public ApplicationPage CurrentPage { get; set; } = ApplicationPage.Login;
+        
 
         #endregion
 
         #region Constructor
         public WindowViewModel(Window window)
         {
-            mWindow = window;
+            _window = window;
         }
         #endregion
 

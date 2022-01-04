@@ -19,6 +19,8 @@ namespace NewProject
 
         public event Action<DependencyObject, DependencyPropertyChangedEventArgs> ValueChanged = (sender, e) => { };
 
+        public event Action<DependencyObject, object> ValueUpdated = (sender, value) => { };
+
         #endregion
 
         #region Public Properties
@@ -37,7 +39,11 @@ namespace NewProject
         /// </summary>
         public static readonly DependencyProperty ValueProperty = DependencyProperty.RegisterAttached("Value",typeof(Property),
             typeof(BaseAttachedProperty<Parent,Property>),
-            new PropertyMetadata(new PropertyChangedCallback(OnValuePropertyChanged)));
+            new PropertyMetadata(
+                default (Property),
+                new PropertyChangedCallback(OnValuePropertyChanged),
+                new CoerceValueCallback(OnValuePropertyUpdated)
+                ));
 
         private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -46,6 +52,16 @@ namespace NewProject
             Instance.ValueChanged(d,e);
         }
 
+        private static object OnValuePropertyUpdated(DependencyObject d, object value)
+        {
+            Instance.OnValueUpdated(d, value);
+            // call event listeners
+            Instance.ValueUpdated(d, value);
+
+            return value;
+        }
+
+        
 
         public static Property GetValue(DependencyObject d) => (Property) d.GetValue(ValueProperty);
 
@@ -60,6 +76,10 @@ namespace NewProject
 
         }
 
+        public virtual void OnValueUpdated(DependencyObject sender, object value)
+        {
+
+        }
         #endregion
     }
 

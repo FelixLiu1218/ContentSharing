@@ -14,7 +14,7 @@ namespace NewProject
     {
         #region private members;
 
-        private static T mConverter = null;
+        private static T _Converter = null;
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace NewProject
         /// <returns></returns>
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return mConverter ?? (mConverter = new T());
+            return _Converter ?? (_Converter = new T());
         }
 
         #endregion

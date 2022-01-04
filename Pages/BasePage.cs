@@ -1,6 +1,7 @@
 ﻿using NewProject.Core;
 using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +16,7 @@ namespace NewProject
 
     #region Private menber
 
-    private VM mViewModel;
+    private VM _viewModel;
 
     #endregion
 
@@ -33,15 +34,15 @@ namespace NewProject
     /// </summary>
     public VM ViewModel
     {
-        get { return mViewModel; }
+        get => _viewModel; 
         set
         {
-            if (mViewModel == value) return;
+            if (_viewModel == value) return;
 
-            mViewModel = value;
+            _viewModel = value;
 
             //set the data context for this page
-            DataContext = mViewModel;
+            DataContext = _viewModel;
         }
     }
 
@@ -64,29 +65,34 @@ namespace NewProject
         ViewModel = new VM();
     }
 
-    #endregion
+        #endregion
 
-    #region Animation Load or Unload
+        #region Animation Load or Unload
 
-    private async void BasePage_Loaded(object sender, RoutedEventArgs e)
+
+        public async Task AnimateIn()
+        {
+            if (PageLoadAnimation == PageAnimation.None) return;
+
+            switch (PageLoadAnimation)
+            {
+                case PageAnimation.SlideAndFadeInFromRight:
+
+                    //Start the animation
+                    this.SlideAndFadeInFromRight(SlideSeconds);
+
+                    break;
+                default:
+                    Debugger.Break();
+                    break;
+            }
+        }
+        private async void BasePage_Loaded(object sender, RoutedEventArgs e)
     {
         await AnimateIn();
     }
 
-    public async Task AnimateIn()
-    {
-        if (PageLoadAnimation == PageAnimation.None) return;
-
-        switch (PageLoadAnimation)
-        {
-            case PageAnimation.SlideAndFadeInFromRight:
-
-                //Start the animation
-                await this.SlideAndFadeInFromRight(SlideSeconds * 2);
-
-                break;
-        }
-    }
+    
 
     public async Task AnimateOut()
     {
@@ -97,7 +103,7 @@ namespace NewProject
             case PageAnimation.SlideAndFadeOutToLeft:
 
                 //Start the animation
-                await this.SlideAndFadeOutToLeft(SlideSeconds * 2);
+                await this.SlideAndFadeOutToLeft(SlideSeconds);
 
                 break;
         }

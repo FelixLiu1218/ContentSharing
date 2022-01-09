@@ -12,7 +12,7 @@
     <UserControl.Template>
         <ControlTemplate TargetType="UserControl">
             <!-- main background -->
-            <Border Background="{StaticResource ForegroundLightBrush}">
+            <Border BorderThickness="0 0.3 0.6 0" BorderBrush="{StaticResource ForegroundDarkBrush}" Background="{StaticResource ForegroundLightBrush}">
                 <!-- Content -->
                 <Grid>
                     <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
                     </Grid.RowDefinitions>
 
                     <!-- Top -->
-                    <Border BorderThickness=" 0 0 0 1" BorderBrush="{StaticResource BackgroundLightBrush}">
+                    <Border BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
                         <Grid Height="110" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>

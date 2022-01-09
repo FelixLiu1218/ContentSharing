@@ -27,4 +27,7 @@
     <system:Double x:Key="FontSizeXXLarge">30</system:Double>
     <system:Double x:Key="FontSizeXXXLarge">36</system:Double>
     <system:Double x:Key="FontSizeXXXXLarge">42</system:Double>
+
+    <system:String x:Key="FontAwesomePaperClipIcon">&#xf15c;</system:String>
+    <system:String x:Key="FontAwesomeEmoji">&#xf59a;</system:String>
 </ResourceDictionary>

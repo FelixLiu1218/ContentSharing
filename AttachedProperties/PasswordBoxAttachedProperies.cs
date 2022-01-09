@@ -4,34 +4,39 @@ using System.Windows.Controls;
 
 namespace NewProject
 {
-    public class MonitorPasswordProperty : BaseAttachedProperty<MonitorPasswordProperty, bool>
+    public class MonitorTextProperty : BaseAttachedProperty<MonitorTextProperty, bool>
     {
         public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            var passwordBox = sender as PasswordBox;
-            if (passwordBox == null) return;
+            
+            var textBox = sender as TextBox;
 
-            passwordBox.PasswordChanged -= PasswordBox_PasswordChanged;
+
+            if (textBox == null) return;
+
+            textBox.TextChanged -= TextBox_TextChanged;
 
             if ((bool) e.NewValue)
             {
-                HasTextProperty.SetValue(passwordBox);
-
-                passwordBox.PasswordChanged += PasswordBox_PasswordChanged;
+                HasTextProperty.SetValue(textBox);
+                textBox.TextChanged += TextBox_TextChanged;
             }
+            
+
         }
 
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            HasTextProperty.SetValue((PasswordBox)sender);
+            HasTextProperty.SetValue((TextBox)sender);
         }
+
     }
 
     public class HasTextProperty : BaseAttachedProperty<HasTextProperty, bool>
     {
         public static void SetValue(DependencyObject sender)
         {
-            SetValue(sender, ((PasswordBox)sender).SecurePassword.Length > 0);
+            SetValue(sender, ((TextBox)sender).LineCount > 0);
         }
     }
 }

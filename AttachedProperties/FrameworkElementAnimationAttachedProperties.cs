@@ -19,6 +19,7 @@ namespace NewProject
 
         #endregion
 
+        
         public override void OnValueUpdated(DependencyObject sender, object value)
         {
             //get the framework element
@@ -40,16 +41,45 @@ namespace NewProject
 
                     //do desired animation
                     DoAnimation(element, (bool) value);
+
+                    //no longer in first load
+                    FirstLoad = false;
                 };
 
                 //hook into the loaded event of the element
                 element.Loaded += onLoaded;
+            }
+            else
+            {
+                //do desired animation
+                DoAnimation(element,(bool)value);
             }
         }
 
         protected virtual void DoAnimation(FrameworkElement element, bool value)
         {
             
+        }
+    }
+
+    /// <summary>
+    /// animates a framework element sliding it in from the left on show
+    /// and sliding out to the left on hide
+    /// </summary>
+    public class AnimateSlideInFromLeftProperty : AnimateBaseProperty<AnimateSlideInFromLeftProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+            {
+                //Animate in
+                await element.SlideAndFadeInFromLeft(FirstLoad ? 0 : 0.45f,keepMargin:false);
+            }
+            else
+            {
+                //Animate Out
+                await element.SlideAndFadeOutToLeft(FirstLoad ? 0 : 0.45f,keepMargin:false);
+            }
         }
     }
 }

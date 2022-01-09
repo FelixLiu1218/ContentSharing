@@ -7,8 +7,7 @@
       xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
       x:Name="Page"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="700"
-      Title="LoginPage">
+      d:DesignHeight="700" d:DesignWidth="700">
 
 
     <Border Background="{StaticResource WordBlueBrush}">
@@ -24,18 +23,20 @@
                             Margin="50 50 50 0">
 
                         <StackPanel>
-                            <TextBlock Text="ログイン" FontSize="{StaticResource FontSizeXXXXLarge}"
+                            <TextBlock Text="Sign In" FontSize="{StaticResource FontSizeXXXXLarge}"
                                    FontFamily="{StaticResource Arial}"
                                    Foreground="{StaticResource WordBlueBrush}"/>
 
 
-                            <TextBlock Text="Eメール" Margin="0 20 0 0"
+                            <TextBlock Text="Email Address" Margin="0 20 0 0"
                                        FontSize="{StaticResource FontSizeLarge}"
                                        Foreground="{StaticResource ForegroundDarkBrush}"/>
 
-                            <TextBox Tag="Email" Text="{Binding Email}"/>
+                            <TextBox Tag="Email"
+                                     Style="{StaticResource EmailTextBox}"
+                                     Text="{Binding Email}"/>
 
-                            <TextBlock Text="パスワード" Margin="0 20 0 0"
+                            <TextBlock Text="Password" Margin="0 20 0 0"
                                        FontSize="{StaticResource FontSizeLarge}"
                                        Foreground="{StaticResource ForegroundDarkBrush}"/>
 
@@ -46,7 +47,8 @@
 
 
                             <Button 
-                                    Content="次へ"
+                                    Content="Login"
+                                    IsDefault="True"
                                     local:IsBusyProperty.Value ="{Binding LoginIsRunning}"
                                     HorizontalAlignment="Center" 
                                     Command="{Binding LoginCommand}"
@@ -58,7 +60,7 @@
 
                     <Button Style="{StaticResource TextButton}"
                             Command="{Binding RegisterCommand}"
-                            Content="アカウントを作成する"
+                            Content="Create an account"
                             HorizontalAlignment="Center"/>
                 </StackPanel>
             </ScrollViewer>

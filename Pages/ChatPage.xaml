@@ -7,11 +7,84 @@
       xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
       x:Name="Page"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1000"
-      Title="ChatPage">
+      d:DesignHeight="700" d:DesignWidth="700">
 
 
-    <Border>
+    <Grid>
+
+        <Grid.RowDefinitions>
+
+            <!-- Name Bar -->
+            <RowDefinition Height="Auto" />
+
+            <!-- Chat List -->
+            <RowDefinition Height="*"/>
+
+            <!-- Message send text box -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Border>
+                <TextBlock Text="Felix"
+                           Margin="0 15 0 0"
+                           Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                           FontFamily="{StaticResource Arial}"
+                           HorizontalAlignment="Center"
+                           FontSize="{StaticResource FontSizeXLarge}" />
+            </Border>
+        </Grid>
+
+
+        <local:ChatMessageListControl Grid.Row="1" />
+
+        <Border Grid.Row="2" 
+                BorderThickness="0 0.4 0 0" 
+                BorderBrush="{StaticResource ForegroundDarkBrush}"
+                >
+            <Grid  Height="50" Background="{StaticResource ForegroundLightBrush}" >
+
+                <Grid.ColumnDefinitions>
+                    <!-- Attach button -->
+                    <ColumnDefinition  Width="Auto"/>
+
+                    <!-- Text entry box -->
+                    <ColumnDefinition  Width="*"/>
+
+                    <!-- additional buttons -->
+                    <ColumnDefinition  Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource IconGrowButton}"
+                        Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Content="{StaticResource FontAwesomePaperClipIcon}"
+                        Foreground="{StaticResource ForegroundDarkBrush}" />
+
+
+                <!-- Message box -->
+                <TextBox Grid.Column="1"
+                         Style="{StaticResource MessageInput}"
+                         Tag="Write some message..."
+                         BorderThickness="0"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         FontSize="{StaticResource FontSizeRegular}" />
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin=" 0 0 8 0">
+
+                    <Button Style="{StaticResource IconGrowButton}"
+                            Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                            Content="{StaticResource FontAwesomeEmoji}"
+                            Foreground="{StaticResource ForegroundDarkBrush}" />
+
+                    <Button Content="Send"
+                            Style="{StaticResource NewButton}"
+                            Padding="8"/>
+
+                </StackPanel>
+
+            </Grid>
+        </Border>
         
-    </Border>
+    </Grid>
 </local:BasePage>

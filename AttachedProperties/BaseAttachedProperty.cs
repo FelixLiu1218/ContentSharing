@@ -12,7 +12,7 @@ namespace NewProject
     /// </summary>
     /// <typeparam></typeparam>
     public abstract class BaseAttachedProperty<Parent, Property>
-        where Parent : BaseAttachedProperty<Parent, Property>, new()
+        where Parent : new()
 
     {
         #region Public Events
@@ -47,16 +47,16 @@ namespace NewProject
 
         private static void OnValuePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            Instance.OnValueChanged(d,e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueChanged(d,e);
             // call event listeners
-            Instance.ValueChanged(d,e);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueChanged(d,e);
         }
 
         private static object OnValuePropertyUpdated(DependencyObject d, object value)
         {
-            Instance.OnValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.OnValueUpdated(d, value);
             // call event listeners
-            Instance.ValueUpdated(d, value);
+            (Instance as BaseAttachedProperty<Parent, Property>)?.ValueUpdated(d, value);
 
             return value;
         }

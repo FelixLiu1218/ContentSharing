@@ -6,32 +6,35 @@
         xmlns:local="clr-namespace:NewProject"
         xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
         mc:Ignorable="d"
-        MinWidth="800"
+        MinWidth="750"
         MinHeight="600"
-        Title="MainWindow" Height="600" Width="900">
+        Title="Sharing" Height="600" Width="800">
 
 
-    <Border Background="{StaticResource WordBlueBrush}">
+    <Border BorderThickness=" 0 0.4 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
         <Grid>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="225"></ColumnDefinition>
-                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
 
-            <Frame Grid.Column="1" 
-                   x:Name="MainFrame" 
-                   Content="{Binding ApplicationViewModel.CurrentPage,
+            <local:PageHost Grid.Column="1" 
+                            d:DataContext=""
+                   DataContext="{Binding ApplicationViewModel.CurrentPage,
                             Source={x:Static local:ViewModelLocator.Instance},
                             Converter={local:ApplicationPageValueConverter}}"
-                   Background="Transparent"/>
+                   CurrentPage="{Binding }"/>
 
-            <local:SideMenuControl Grid.Column="0">
+            <local:SideMenuControl Grid.Column="0" 
+                                   Width="225"
+                                   local:AnimateSlideInFromLeftProperty.Value="{Binding ApplicationViewModel.SideMenuVisible,
+                            Source={x:Static local:ViewModelLocator.Instance}}">
                 <local:ChatListControl  />
             </local:SideMenuControl>
 
         </Grid>
     </Border>
-    
+
 </Window>

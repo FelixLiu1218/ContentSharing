@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Mime;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,7 +17,7 @@ namespace NewProject
 
             textBox.TextChanged -= TextBox_TextChanged;
 
-            if ((bool) e.NewValue)
+            if ((bool)e.NewValue)
             {
                 HasTextProperty.SetValue(textBox);
                 textBox.TextChanged += TextBox_TextChanged;
@@ -25,7 +26,7 @@ namespace NewProject
 
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, RoutedEventArgs e)
         {
             HasTextProperty.SetValue((TextBox)sender);
         }
@@ -36,7 +37,7 @@ namespace NewProject
     {
         public static void SetValue(DependencyObject sender)
         {
-            SetValue(sender, ((TextBox)sender).LineCount > 0);
+            SetValue(sender, ((TextBox)sender).Text.Length > 0);
         }
     }
 }

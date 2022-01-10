@@ -120,7 +120,7 @@
 
     <!-- Message -->
     <Style x:Key="MessageInput" TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseStyle}">
-        <Setter Property="Padding" Value="15" />
+        <Setter Property="Padding" Value="0 16 0 15" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
 
         <Setter Property="local:MonitorTextProperty.Value" Value="True" />

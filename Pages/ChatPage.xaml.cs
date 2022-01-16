@@ -12,7 +12,7 @@ namespace NewProject
     /// <summary>
     /// ChatPage.xaml 的互動邏輯
     /// </summary>
-    public partial class ChatPage : BasePage<LoginViewModel>
+    public partial class ChatPage : BasePage<ChatMessageListViewModel>
     {
         public ChatPage()
         {

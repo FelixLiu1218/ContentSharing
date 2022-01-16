@@ -82,4 +82,25 @@ namespace NewProject
             }
         }
     }
+
+    /// <summary>
+    /// animates a framework element sliding up from bottom on show
+    /// and sliding out to the bottom on hide
+    /// </summary>
+    public class AnimateSlideInFromBottomProperty : AnimateBaseProperty<AnimateSlideInFromBottomProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+            {
+                //Animate in
+                await element.SlideAndFadeInFromBottom(FirstLoad ? 0 : 0.45f, keepMargin: false);
+            }
+            else
+            {
+                //Animate Out
+                await element.SlideAndFadeOutToBottom(FirstLoad ? 0 : 0.45f, keepMargin: false);
+            }
+        }
+    }
 }

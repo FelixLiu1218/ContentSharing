@@ -131,5 +131,52 @@ namespace NewProject
 
             storyboard.Children.Add(animation);
         }
+
+
+        /// <summary>
+        /// add a slide from bottom animation to the storyboard
+        /// </summary>
+        /// <param name="storyboard"></param>
+        /// <param name="seconds">the time the animation will take</param>
+        /// <param name="offset">the distance to the bottom to start from</param>
+        /// <param name="decelerationRatio"></param>
+        public static void AddSlideFromBottom(this Storyboard storyboard, float seconds, double offset,
+            float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(seconds)),
+                From = new Thickness(0, keepMargin ? offset : 0, 0, -offset),
+                To = new Thickness(0),
+                DecelerationRatio = decelerationRatio
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+
+            storyboard.Children.Add(animation);
+        }
+
+        /// <summary>
+        /// add a slide to bottom animation to the storyboard
+        /// </summary>
+        /// <param name="storyboard"></param>
+        /// <param name="seconds">the time the animation will take</param>
+        /// <param name="offset">the distance to the bottom to end at</param>
+        /// <param name="decelerationRatio"></param>
+        public static void AddSlideToBottom(this Storyboard storyboard, float seconds, double offset,
+            float decelerationRatio = 0.9f, bool keepMargin = true)
+        {
+            var animation = new ThicknessAnimation
+            {
+                Duration = new Duration(TimeSpan.FromSeconds(seconds)),
+                From = new Thickness(0),
+                To = new Thickness(0, keepMargin ? offset : 0, 0, -offset),
+                DecelerationRatio = decelerationRatio
+            };
+
+            Storyboard.SetTargetProperty(animation, new PropertyPath("Margin"));
+
+            storyboard.Children.Add(animation);
+        }
     }
 }

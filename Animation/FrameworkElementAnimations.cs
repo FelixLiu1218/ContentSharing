@@ -115,5 +115,59 @@ namespace NewProject
 
             await Task.Delay((int)(seconds * 1000));
         }
+
+        /// <summary>
+        /// slides an element in from the bottom
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="seconds"></param>
+        /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
+        /// <returns></returns>
+        public static async Task SlideAndFadeInFromBottom(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true, int height = 0)
+        {
+            var sb = new Storyboard();
+
+            //Add slide from bottom animation
+            sb.AddSlideFromBottom(seconds, height == 0 ? element.ActualHeight : height, keepMargin: keepMargin);
+
+            //Add slide from bottom animation
+            sb.AddFadeIn(seconds);
+
+
+            //Start animating
+            sb.Begin(element);
+
+            //make page visible
+            element.Visibility = Visibility.Visible;
+
+            await Task.Delay((int)(seconds * 1000));
+        }
+
+        /// <summary>
+        /// slides an element out to the bottom
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="seconds"></param>
+        /// <param name="keepMargin">Whether to keep the element at the same height during animation</param>
+        /// <returns></returns>
+        public static async Task SlideAndFadeOutToBottom(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true, int height = 0)
+        {
+            var sb = new Storyboard();
+
+            //Add slide to bottom animation
+            sb.AddSlideToBottom(seconds, height == 0 ? element.ActualHeight : height, keepMargin: keepMargin);
+
+            //Add slide to bottom animation
+            sb.AddFadeOut(seconds);
+
+
+            //Start animating
+            sb.Begin(element);
+
+            //make page visible
+            element.Visibility = Visibility.Visible;
+
+            await Task.Delay((int)(seconds * 1000));
+        }
     }
 }

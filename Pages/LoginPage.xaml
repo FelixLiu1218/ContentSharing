@@ -42,6 +42,7 @@
 
                             <PasswordBox 
                                 x:Name="PasswordText"/>
+
                             <TextBlock Text="8-16文字を入力してください"
                                        Foreground="{StaticResource ForegroundDarkBrush}"></TextBlock>
 

@@ -23,12 +23,24 @@ namespace NewProject
             //let the base application do what it needs
             base.OnStartup(e);
 
-            //start ioc
-            IoC.Setup();
+            //setup the main application
+            ApplicationSetup();
 
             //show the main window
             Current.MainWindow = new MainWindow();
             Current.MainWindow.Show();
+        }
+
+        /// <summary>
+        /// Configures the application ready for use
+        /// </summary>
+        /// <exception cref="NotImplementedException"></exception>
+        private void ApplicationSetup()
+        {
+            IoC.Setup();
+
+            //Bind a ui manager
+            IoC.Kernel.Bind<IUIManager>().ToConstant(new UIManager());
         }
     }
 }

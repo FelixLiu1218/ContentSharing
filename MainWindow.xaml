@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         MinWidth="750"
         MinHeight="600"
+        WindowStartupLocation="CenterScreen"
         Title="Sharing" Height="600" Width="800">
 
 

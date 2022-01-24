@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NewProject"
-             xmlns:core1="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+             xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d" d:DesignWidth="300">
     <Border Padding="12.5"
-            d:DataContext="{x:Static core1:ChatMessageListItemDesignModel.Instance}">
+            d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
             <Border VerticalAlignment="Center"
                     HorizontalAlignment="Left"

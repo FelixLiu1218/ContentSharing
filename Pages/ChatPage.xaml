@@ -35,16 +35,29 @@
             </Border>
         </Grid>
 
+        <!-- Popup Overlay -->
+        <Border Background="Transparent"
+                Grid.RowSpan="2" 
+                Panel.ZIndex="1"
+                Visibility="{Binding AnyPopupVisible ,Converter={local:BooleanToVisiblityConverter},ConverterParameter=true}">
+            <Border.InputBindings>
+                <MouseBinding MouseAction="LeftClick" Command="{Binding PopupClickawayCommand}" />
+            </Border.InputBindings>
+        </Border>
 
         <local:ChatMessageListControl Grid.Row="1" />
 
         <local:BubbleContent Grid.Row="1"
+                             Panel.ZIndex="2"
                              DataContext="{Binding AttachmentMenu}"
                              VerticalAlignment="Bottom"
                              HorizontalAlignment="Left"
                              local:AnimateSlideInFromBottomProperty.Value="{Binding ViewModel.AttachmentMenuVisible ,RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type local:ChatPage}}}"/>
 
+        
+
         <Border Grid.Row="2" 
+                Panel.ZIndex="3"
                 BorderThickness="0 0.4 0 0" 
                 BorderBrush="{StaticResource ForegroundDarkBrush}"
                 >
@@ -60,6 +73,8 @@
                     <!-- additional buttons -->
                     <ColumnDefinition  Width="Auto"/>
                 </Grid.ColumnDefinitions>
+
+                
 
                 <Button Grid.Column="0" Style="{StaticResource IconGrowButton}"
                         Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
@@ -85,6 +100,7 @@
                             Foreground="{StaticResource ForegroundDarkBrush}" />
 
                     <Button Content="Send"
+                            Command="{Binding SendCommand}"
                             Style="{StaticResource NewButton}"
                             Padding="8"/>
 

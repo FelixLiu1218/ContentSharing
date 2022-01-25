@@ -72,7 +72,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="NewButton" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
+    <Style x:Key="Button" TargetType="{x:Type Button}" BasedOn="{StaticResource BaseStyle}">
 
         <Setter Property="Background" Value="{StaticResource WordDoubleVeryLightBlueBrush}" />
         <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}" />

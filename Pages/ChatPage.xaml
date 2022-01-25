@@ -101,7 +101,7 @@
 
                     <Button Content="Send"
                             Command="{Binding SendCommand}"
-                            Style="{StaticResource NewButton}"
+                            Style="{StaticResource Button}"
                             Padding="8"/>
 
                 </StackPanel>

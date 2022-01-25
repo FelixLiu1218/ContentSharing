@@ -13,7 +13,7 @@
 
 
     <Border Padding="10" Background="{StaticResource ForegroundLightBrush}">
-        <ContentControl Content="{}"/>
+        <ContentControl Content="{Binding Content}"/>
     </Border>
 
 </Window>

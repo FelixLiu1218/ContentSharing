@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using NewProject.Core;
 
 namespace NewProject
@@ -12,7 +14,7 @@ namespace NewProject
     /// <summary>
     /// The base class for any content that is being used inside of a <see cref="DialogWindow"/>
     /// </summary>
-    public class BaseDialogUserControl :UserControl
+    public  class BaseDialogUserControl :UserControl
     {
         #region Private Members
 
@@ -24,16 +26,6 @@ namespace NewProject
         #region Public Properties
 
         /// <summary>
-        /// The minimum width of the dialog
-        /// </summary>
-        public int WindowMinimumWidth { get; set; } = 250;
-
-        /// <summary>
-        /// The minimum height of the dialog
-        /// </summary>
-        public int WindowMinimumHeight { get; set; } = 100;
-
-        /// <summary>
         /// The title for the dialog
         /// </summary>
         public string Title { get; set; }
@@ -43,7 +35,10 @@ namespace NewProject
 
         #region Public Commands
 
-
+        /// <summary>
+        /// Close the dialog
+        /// </summary>
+        public ICommand Close { get; private set; }
 
 
         #endregion
@@ -52,8 +47,14 @@ namespace NewProject
 
         public BaseDialogUserControl()
         {
-            _dialogWindow = new DialogWindow();
-            _dialogWindow.ViewModel = new DialogWindowViewModel(_dialogWindow);
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                _dialogWindow = new DialogWindow();
+                _dialogWindow.ViewModel = new DialogWindowViewModel(_dialogWindow);
+
+                Close = new RelayCommand(() => _dialogWindow.Close());
+            }
+            
         }
 
         #endregion
@@ -65,7 +66,8 @@ namespace NewProject
         /// </summary>
         /// <param name="viewModel"></param>
         /// <returns></returns>
-        public Task ShowDialog(MessageBoxDialogViewModel viewModel)
+        public Task ShowDialog<T>(T viewModel)
+        where T:BaseDialogViewModel
         {
             //create a task to await the dialog closing
             var tcs = new TaskCompletionSource<bool>();
@@ -74,8 +76,13 @@ namespace NewProject
             {
                 try
                 {
-                    _dialogWindow.ViewModel.Title = Title;
+                    _dialogWindow.ViewModel.Title = viewModel.Title;
 
+                    //set this control to the dialog window content
+                    _dialogWindow.ViewModel.Content = this;
+
+                    //Setup this controls data context binding to the view model
+                    DataContext = viewModel;
 
                     //show dialog
                     _dialogWindow.ShowDialog();

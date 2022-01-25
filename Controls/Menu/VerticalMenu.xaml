@@ -49,10 +49,6 @@
                                          <ColorAnimation To="Black" 
                                                          Duration="0:0:0.2" 
                                                          Storyboard.TargetProperty="Foreground.Color"
-                                                         Storyboard.TargetName="Icon"/>
-                                         <ColorAnimation To="Black" 
-                                                         Duration="0:0:0.2" 
-                                                         Storyboard.TargetProperty="Foreground.Color"
                                                          Storyboard.TargetName="Text"/>
                                     </Storyboard>
                                  </BeginStoryboard>
@@ -64,10 +60,6 @@
                                         <ColorAnimation From="{StaticResource BackgroundLight}" 
                                                         Duration="0:0:0.05" 
                                                         Storyboard.TargetProperty="Background.Color"/>
-                                        <ColorAnimation From="Black" 
-                                                        Duration="0:0:0.05" 
-                                                        Storyboard.TargetProperty="Foreground.Color"
-                                                        Storyboard.TargetName="Icon"/>
                                         <ColorAnimation From="Black" 
                                                         Duration="0:0:0.2" 
                                                         Storyboard.TargetProperty="Foreground.Color"

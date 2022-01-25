@@ -32,5 +32,17 @@ namespace NewProject
             DataContext = new WindowViewModel(this);
 
         }
+
+        private void MainWindow_OnDeactivated(object sender, EventArgs e)
+        {
+            // show overlay
+            (DataContext as WindowViewModel).DimmableOverlayVisible=true;
+        }
+
+        private void MainWindow_OnActivated(object sender, EventArgs e)
+        {
+            //hide overlay if we are focused
+            (DataContext as WindowViewModel).DimmableOverlayVisible = false;
+        }
     }
 }

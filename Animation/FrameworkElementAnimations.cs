@@ -169,5 +169,55 @@ namespace NewProject
 
             await Task.Delay((int)(seconds * 1000));
         }
+
+        /// <summary>
+        /// Fade in
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="seconds"></param>
+        /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
+        /// <returns></returns>
+        public static async Task FadeIn(this FrameworkElement element, float seconds = 0.45f)
+        {
+            var sb = new Storyboard();
+
+            //Add slide from bottom animation
+            sb.AddFadeIn(seconds);
+
+
+            //Start animating
+            sb.Begin(element);
+
+            //make page visible
+            element.Visibility = Visibility.Visible;
+
+            await Task.Delay((int)(seconds * 1000));
+        }
+
+        /// <summary>
+        /// Fade out
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="seconds"></param>
+        /// <param name="keepMargin">Whether to keep the element at the same height during animation</param>
+        /// <returns></returns>
+        public static async Task FadeOut(this FrameworkElement element, float seconds = 0.45f)
+        {
+            var sb = new Storyboard();
+
+            //Add slide to bottom animation
+            sb.AddFadeOut(seconds);
+
+
+            //Start animating
+            sb.Begin(element);
+
+            //make page visible
+            element.Visibility = Visibility.Visible;
+
+            await Task.Delay((int)(seconds * 1000));
+
+            element.Visibility = Visibility.Collapsed;
+        }
     }
 }

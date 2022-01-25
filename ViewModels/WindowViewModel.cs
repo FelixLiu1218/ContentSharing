@@ -18,7 +18,10 @@ namespace NewProject
 
         #region public Properties
 
-        
+        /// <summary>
+        /// True: if we should have a dimmed overlay on the window
+        /// </summary>
+        public bool DimmableOverlayVisible { get; set; }
 
         #endregion
 

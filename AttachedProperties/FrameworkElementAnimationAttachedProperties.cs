@@ -103,4 +103,25 @@ namespace NewProject
             }
         }
     }
+
+    /// <summary>
+    /// animates a framework element fading in 
+    /// and fading out on hide
+    /// </summary>
+    public class AnimateFadeInProperty : AnimateBaseProperty<AnimateFadeInProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value)
+        {
+            if (value)
+            {
+                //Animate in
+                await element.FadeIn(FirstLoad ? 0 : 0.45f);
+            }
+            else
+            {
+                //Animate Out
+                await element.FadeOut(FirstLoad ? 0 : 0.45f);
+            }
+        }
+    }
 }

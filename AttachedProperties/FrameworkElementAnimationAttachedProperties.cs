@@ -13,6 +13,7 @@ namespace NewProject
     public abstract class AnimateBaseProperty<Parent> : BaseAttachedProperty<Parent, bool>
     where Parent : BaseAttachedProperty<Parent,bool>,new()
     {
+
         #region Public Properties
 
         public bool FirstLoad { get; set; } = true;
@@ -26,11 +27,14 @@ namespace NewProject
             if (!(sender is FrameworkElement element)) return;
 
             //Don't fire if the value doesn't change
-            if (sender.GetValue(ValueProperty) == value && !FirstLoad) return;
+            if ((bool)sender.GetValue(ValueProperty) == (bool)value && !FirstLoad) return;
+
 
             //On first load
             if (FirstLoad)
             {
+                element.Visibility = Visibility.Hidden;
+
                 //create a single self-unhookable event
                 //for the elements loaded event
                 RoutedEventHandler onLoaded = null;
@@ -73,12 +77,12 @@ namespace NewProject
             if (value)
             {
                 //Animate in
-                await element.SlideAndFadeInFromLeft(FirstLoad ? 0 : 0.45f,keepMargin:false);
+                await element.SlideAndFadeInFromLeft(FirstLoad ? 0 : 0.2f,keepMargin:false);
             }
             else
             {
                 //Animate Out
-                await element.SlideAndFadeOutToLeft(FirstLoad ? 0 : 0.45f,keepMargin:false);
+                await element.SlideAndFadeOutToLeft(FirstLoad ? 0 : 0.2f,keepMargin:false);
             }
         }
     }
@@ -94,12 +98,12 @@ namespace NewProject
             if (value)
             {
                 //Animate in
-                await element.SlideAndFadeInFromBottom(FirstLoad ? 0 : 0.45f, keepMargin: false);
+                await element.SlideAndFadeInFromBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
             }
             else
             {
                 //Animate Out
-                await element.SlideAndFadeOutToBottom(FirstLoad ? 0 : 0.45f, keepMargin: false);
+                await element.SlideAndFadeOutToBottom(FirstLoad ? 0 : 0.2f, keepMargin: false);
             }
         }
     }
@@ -115,12 +119,12 @@ namespace NewProject
             if (value)
             {
                 //Animate in
-                await element.FadeIn(FirstLoad ? 0 : 0.45f);
+                await element.FadeIn(FirstLoad ? 0 : 0.2f);
             }
             else
             {
                 //Animate Out
-                await element.FadeOut(FirstLoad ? 0 : 0.45f);
+                await element.FadeOut(FirstLoad ? 0 : 0.2f);
             }
         }
     }

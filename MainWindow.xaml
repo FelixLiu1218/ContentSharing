@@ -22,8 +22,15 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <!-- Settings Page -->
+            <local:SettingsControl Grid.ColumnSpan="2"
+                                   Panel.ZIndex="9"
+                                   local:AnimateSlideInFromBottomProperty.Value="{Binding ApplicationViewModel.SettingsMenuVisible,Source={x:Static local:ViewModelLocator.Instance}}"
+                                   />
+
+            <!-- Dimmed Overlay -->
             <Border Grid.ColumnSpan="2"
-                    Panel.ZIndex="10"
+                    Panel.ZIndex="9"
                     Opacity="0.3">
                 <Border Background="{StaticResource ForegroundVeryDarkBrush}"
                         local:AnimateFadeInProperty.Value="{Binding DimmableOverlayVisible}"

@@ -23,6 +23,7 @@ namespace NewProject
         /// </summary>
         public bool DimmableOverlayVisible { get; set; }
 
+
         #endregion
 
         #region Constructor

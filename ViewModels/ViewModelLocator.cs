@@ -22,5 +22,10 @@ namespace NewProject
         /// The application view model
         /// </summary>
         public static ApplicationViewModel ApplicationViewModel => IoC.Get<ApplicationViewModel>();
+
+        /// <summary>
+        /// The application view model
+        /// </summary>
+        public static SettingsViewModel SettingsViewModel => IoC.Get<SettingsViewModel>();
     }
 }

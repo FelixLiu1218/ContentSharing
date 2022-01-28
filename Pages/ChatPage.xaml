@@ -24,16 +24,39 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid>
-            <Border>
-                <TextBlock Text="Felix"
-                           Margin="0 15 0 0"
-                           Foreground="{StaticResource ForegroundVeryDarkBrush}"
-                           FontFamily="{StaticResource Arial}"
-                           HorizontalAlignment="Center"
-                           FontSize="{StaticResource FontSizeXLarge}" />
-            </Border>
-        </Grid>
+        <Border Grid.Row="0" BorderThickness="0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
+            <Grid Height="45">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock  Text="Felix"
+                                Margin="12 12 0 12"
+                               Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                               FontFamily="{StaticResource Arial}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="{StaticResource FontSizeXLarge}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Button
+                        Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Margin="-15 0 0 0"
+                        Style="{StaticResource IconGrowButton}"
+                        Content="{StaticResource FontAwesomeSearch}"/>
+
+                    <Button
+                        Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                        Style="{StaticResource IconGrowButton}"
+                        Content="{StaticResource FontAwesomeellipsis}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+
 
         <!-- Popup Overlay -->
         <Border Background="Transparent"

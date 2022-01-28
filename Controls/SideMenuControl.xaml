@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NewProject"
              xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             >
 
 
     <UserControl.Template>
@@ -17,29 +17,55 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!-- Top -->
-                    <Border BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
-                        <Grid Height="110" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
+                    <Border Height="100" BorderThickness=" 0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
+                        <Grid>
                             <!-- Buttons -->
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Grid.Row="0" Orientation="Horizontal">
                                 <TextBlock Style="{StaticResource UserIcon}" VerticalAlignment="Center" Margin="20 0 5 0"></TextBlock>
                                 <TextBlock Style="{StaticResource TopUserName}" Text="123456" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
                             </StackPanel>
                         </Grid>
                     </Border>
-                    
-                    
+
+                    <Border Grid.Row="1" BorderThickness="0 0 0 0.3" BorderBrush="{StaticResource ForegroundDarkBrush}">
+                        <Grid  Height="55" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource IconGrowSideMenuButton}"
+                                        Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                        Content="{StaticResource FontAwesomeUser}"/>
+
+                                <Button Style="{StaticResource IconGrowSideMenuButton}"
+                                        Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                        Content="{StaticResource FontAwesomeUsers}"/>
+                            </StackPanel>
+
+
+                            <Button Grid.Column="2" 
+                                    Command="{Binding SettingsViewModel.OpenCommand,Source={x:Static local:ViewModelLocator.Instance}}"
+                                    Style="{StaticResource IconGrowSideMenuButton}"
+                                    Height="{Binding Height ,RelativeSource={RelativeSource AncestorType=Grid}}"
+                                    Content="{StaticResource FontAwesomeSettingIcon}"/>
+                        </Grid>
+                    </Border>
+                   
+
                     
 
-                    <ContentPresenter Grid.Row="1"/>
+
+
+                    <ContentPresenter Grid.Row="2"/>
                 </Grid>
             </Border>
         </ControlTemplate>

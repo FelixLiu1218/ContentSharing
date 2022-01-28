@@ -14,7 +14,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true,int width = 0)
+        public static async Task SlideAndFadeInFromRight(this FrameworkElement element, float seconds = 0.2f, bool keepMargin = true,int width = 0)
         {
             var sb = new Storyboard();
 
@@ -42,7 +42,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.45f,bool keepMargin = true, int width = 0)
+        public static async Task SlideAndFadeInFromLeft(this FrameworkElement element, float seconds = 0.2f,bool keepMargin = true, int width = 0)
         {
             var sb = new Storyboard();
 
@@ -69,7 +69,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToLeft(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true, int width = 0)
+        public static async Task SlideAndFadeOutToLeft(this FrameworkElement element, float seconds = 0.2f, bool keepMargin = true, int width = 0)
         {
             var sb = new Storyboard();
 
@@ -87,6 +87,9 @@ namespace NewProject
             element.Visibility = Visibility.Visible;
 
             await Task.Delay((int)(seconds * 1000));
+
+            //make page visible
+            element.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -96,7 +99,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeOutToRight(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true, int width = 0)
+        public static async Task SlideAndFadeOutToRight(this FrameworkElement element, float seconds = 0.2f, bool keepMargin = true, int width = 0)
         {
             var sb = new Storyboard();
 
@@ -114,6 +117,9 @@ namespace NewProject
             element.Visibility = Visibility.Visible;
 
             await Task.Delay((int)(seconds * 1000));
+
+            //make page visible
+            element.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -123,7 +129,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task SlideAndFadeInFromBottom(this FrameworkElement element, float seconds = 0.45f, bool keepMargin = true, int height = 0)
+        public static async Task SlideAndFadeInFromBottom(this FrameworkElement element, float seconds = 0.2f, bool keepMargin = true, int height = 0)
         {
             var sb = new Storyboard();
 
@@ -165,9 +171,13 @@ namespace NewProject
             sb.Begin(element);
 
             //make page visible
-            element.Visibility = Visibility.Visible;
+            if (seconds == 0)
+                element.Visibility = Visibility.Hidden;
 
             await Task.Delay((int)(seconds * 1000));
+
+            //make element invisible
+            element.Visibility = Visibility.Hidden;
         }
 
         /// <summary>
@@ -177,7 +187,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// <param name="keepMargin">Whether to keep the element at the same width during animation</param>
         /// <returns></returns>
-        public static async Task FadeIn(this FrameworkElement element, float seconds = 0.45f)
+        public static async Task FadeIn(this FrameworkElement element, float seconds = 0.2f)
         {
             var sb = new Storyboard();
 
@@ -201,7 +211,7 @@ namespace NewProject
         /// <param name="seconds"></param>
         /// <param name="keepMargin">Whether to keep the element at the same height during animation</param>
         /// <returns></returns>
-        public static async Task FadeOut(this FrameworkElement element, float seconds = 0.45f)
+        public static async Task FadeOut(this FrameworkElement element, float seconds = 0.2f)
         {
             var sb = new Storyboard();
 
@@ -217,7 +227,7 @@ namespace NewProject
 
             await Task.Delay((int)(seconds * 1000));
 
-            element.Visibility = Visibility.Collapsed;
+            element.Visibility = Visibility.Hidden;
         }
     }
 }

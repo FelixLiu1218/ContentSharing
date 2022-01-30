@@ -4,7 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NewProject"
-             mc:Ignorable="d" >
+             xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
+             mc:Ignorable="d"
+             d:DataContext="{x:Static core:SettingsDesignModel.Instance}">
     <Border Background="{StaticResource ForegroundLightBrush}">
         <Grid>
             <Grid.RowDefinitions>
@@ -61,13 +63,19 @@
                 </Border>
 
                 <!-- Profile -->
-                <StackPanel Grid.Column="1">
-                    <local:TextEntryControl/>
-                    <local:TextEntryControl/>
-                    <local:TextEntryControl/>
-                    <local:TextEntryControl/>
+                <StackPanel Grid.Column="1"
+                            local:TextEntryWidthProperty.Value="True">
+
+                    <local:TextEntryControl DataContext="{Binding Name}"/>
+                    <local:TextEntryControl DataContext="{Binding Username}"/>
+                    <local:PasswordEntryControl DataContext="{Binding Password}"/>
+                    <local:TextEntryControl DataContext="{Binding Email}"/>
+
+                    <Button Content="Logout"
+
+                    />
                 </StackPanel>
-                
+
             </Grid>
 
             

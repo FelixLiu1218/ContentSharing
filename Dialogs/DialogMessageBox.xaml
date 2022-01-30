@@ -14,6 +14,8 @@
                 Text="{Binding Message,FallbackValue=Test}" />
 
             <Button Content="{Binding OKText}"
+                    IsDefault="True"
+                    IsCancel="True"
                     Command="{Binding Close,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:BaseDialogUserControl}}}"
                     Margin="0 7 0 5"
                     Padding="20 10 20 8"

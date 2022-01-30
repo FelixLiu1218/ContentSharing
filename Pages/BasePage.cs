@@ -63,7 +63,7 @@ namespace NewProject
                 case PageAnimation.SlideAndFadeInFromRight:
 
                     //Start the animation
-                    await this.SlideAndFadeInFromRight(SlideSeconds,width: (int)Application.Current.MainWindow.Width);
+                    await this.SlideAndFadeIn(AnimationSlideInDirection.Right, false, SlideSeconds, size: (int)Application.Current.MainWindow.Width);
 
                     break;
                 default:
@@ -95,7 +95,7 @@ namespace NewProject
                 case PageAnimation.SlideAndFadeOutToLeft:
 
                     //Start the animation
-                    await this.SlideAndFadeOutToLeft(SlideSeconds);
+                    await this.SlideAndFadeOut(AnimationSlideInDirection.Right, SlideSeconds);
 
                     break;
             }

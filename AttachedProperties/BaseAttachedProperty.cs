@@ -8,7 +8,7 @@ using System.Windows;
 namespace NewProject
 {
     /// <summary>
-    /// base attached property
+    /// Base attached property
     /// </summary>
     /// <typeparam></typeparam>
     public abstract class BaseAttachedProperty<Parent, Property>

@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace NewProject
 {
@@ -34,6 +35,41 @@ namespace NewProject
             if ((bool)e.NewValue)
                 //Focus this control
                 control.Focus();
+        }
+    }
+
+    /// <summary>
+    /// Focuses and selects all text in this element if true
+    /// NOTE:Keyboard focus
+    /// </summary>
+    public class FocusAndSelectProperty : BaseAttachedProperty<FocusAndSelectProperty, bool>
+    {
+        public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+            //If we don't have control return
+            if ((sender is TextBoxBase control))
+            {
+                if ((bool)e.NewValue)
+                {
+                    //Focus this control
+                    control.Focus();
+
+                    control.SelectAll();
+                }
+            }
+
+            if ((sender is PasswordBox password))
+            {
+                if ((bool)e.NewValue)
+                {
+                    //Focus this control
+                    password.Focus();
+
+                    password.SelectAll();
+                }
+            }
+
+
         }
     }
 }

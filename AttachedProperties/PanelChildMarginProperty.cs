@@ -15,6 +15,7 @@ namespace NewProject
             //get the Panel
             var panel = (sender as Panel);
 
+            //Wait for panel to load
             panel.Loaded += (s, ee) =>
             {
                 // Loop each child

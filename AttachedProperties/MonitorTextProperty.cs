@@ -5,39 +5,66 @@ using System.Windows.Controls;
 
 namespace NewProject
 {
-    public class MonitorTextProperty : BaseAttachedProperty<MonitorTextProperty, bool>
+    public class MonitorPasswordProperty : BaseAttachedProperty<MonitorPasswordProperty, bool>
     {
         public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
             
-            var textBox = sender as TextBox;
+            var passwordBox = sender as PasswordBox;
 
+            if (passwordBox == null) return;
 
-            if (textBox == null) return;
-
-            textBox.TextChanged -= TextBox_TextChanged;
+            passwordBox.PasswordChanged -= PasswordBox_TextChanged;
 
             if ((bool)e.NewValue)
             {
-                HasTextProperty.SetValue(textBox);
+                HasTextProperty.SetValuePassword(passwordBox);
+                passwordBox.PasswordChanged += PasswordBox_TextChanged;
+            }
+        }
+
+        private void PasswordBox_TextChanged(object sender, RoutedEventArgs e)
+        {
+            HasTextProperty.SetValuePassword((PasswordBox)sender);
+        }
+    }
+
+    public class MonitorTextProperty : BaseAttachedProperty<MonitorTextProperty, bool>
+    {
+        public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
+        {
+
+            var textBox = sender as TextBox;
+
+            if (textBox == null) return;
+
+            if (textBox.IsFocused)
+                textBox.TextChanged -= TextBox_TextChanged;
+
+
+
+            if ((bool)e.NewValue)
+            {
+                HasTextProperty.SetValueText(textBox);
                 textBox.TextChanged += TextBox_TextChanged;
             }
-            
-
         }
 
         private void TextBox_TextChanged(object sender, RoutedEventArgs e)
         {
-            HasTextProperty.SetValue((TextBox)sender);
+            HasTextProperty.SetValueText((TextBox)sender);
         }
-
     }
 
     public class HasTextProperty : BaseAttachedProperty<HasTextProperty, bool>
     {
-        public static void SetValue(DependencyObject sender)
+        public static void SetValueText(DependencyObject sender)
         {
             SetValue(sender, ((TextBox)sender).Text.Length > 0);
+        }
+        public static void SetValuePassword(DependencyObject sender)
+        {
+            SetValue(sender, ((PasswordBox)sender).SecurePassword.Length > 0);
         }
     }
 }

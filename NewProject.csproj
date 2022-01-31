@@ -120,12 +120,12 @@
     <Compile Include="Animation\PageAnimations.cs" />
     <Compile Include="Animation\StoryBoardHelpers.cs" />
     <Compile Include="AttachedProperties\BaseAttachedProperty.cs" />
+    <Compile Include="AttachedProperties\MonitorTextProperty.cs" />
     <Compile Include="AttachedProperties\TextEntryWidthProperty.cs" />
     <Compile Include="AttachedProperties\PanelChildMarginProperty.cs" />
     <Compile Include="AttachedProperties\NoFrameHistory.cs" />
     <Compile Include="AttachedProperties\ButtonAttachedProperty.cs" />
     <Compile Include="AttachedProperties\FrameworkElementAnimationAttachedProperties.cs" />
-    <Compile Include="AttachedProperties\MonitorTextProperty.cs" />
     <Compile Include="AttachedProperties\TextAttachedProperties.cs" />
     <Compile Include="Controls\BubbleContent.xaml.cs">
       <DependentUpon>BubbleContent.xaml</DependentUpon>

@@ -5,6 +5,7 @@ using System.Windows;
 using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Security;
+using System.Windows.Media.Animation;
 using NewProject.Core;
 
 namespace NewProject
@@ -14,9 +15,32 @@ namespace NewProject
     /// </summary>
     public partial class ChatPage : BasePage<ChatMessageListViewModel>
     {
-        public ChatPage()
+        #region Constructor
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public ChatPage() : base()
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Constructor with specific view model
+        /// </summary>
+        /// <param name="specificViewModel"></param>
+        public ChatPage(ChatMessageListViewModel specificViewModel) : base(specificViewModel)
+        {
+            InitializeComponent();
+
+        }
+
+        #endregion
+
+        #region Override Methods
+
+        
+
+        #endregion
     }
 }

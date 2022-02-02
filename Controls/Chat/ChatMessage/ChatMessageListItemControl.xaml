@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NewProject"
              xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d" d:DesignWidth="300">
-    <Border Padding="12.5"
+    <Border Padding="12"
             d:DataContext="{x:Static core:ChatMessageListItemDesignModel.Instance}">
         <Grid>
             <Border VerticalAlignment="Center"
@@ -43,6 +43,7 @@
                     <!-- Message Text -->
                     <TextBlock VerticalAlignment="Center"
                                TextWrapping="Wrap"
+                               FontSize="{StaticResource FontSizeRegular}"
                                FontFamily="{StaticResource Arial}"
                                Foreground="{StaticResource ForegroundVeryDarkBrush}"
                                Text="{Binding Message}"/>

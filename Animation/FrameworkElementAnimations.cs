@@ -56,6 +56,7 @@ namespace NewProject
 
             // Wait for it to finish
             await Task.Delay((int)(seconds * 1000));
+
         }
 
         /// <summary>
@@ -130,6 +131,7 @@ namespace NewProject
             // Wait for it to finish
             await Task.Delay((int)(seconds * 1000));
         }
+
         /// <summary>
         /// Fades out an element
         /// </summary>

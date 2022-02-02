@@ -7,7 +7,9 @@
       xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
       x:Name="Page"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="700">
+      d:DesignHeight="700" d:DesignWidth="700"
+      d:DataContext="{x:Static core:ChatMessageListDesignModel.Instance}"
+      >
 
 
     <Grid>
@@ -68,14 +70,20 @@
             </Border.InputBindings>
         </Border>
 
-        <local:ChatMessageListControl Grid.Row="1" />
+        <!-- Chat list -->
+        <local:ChatMessageListControl Grid.Row="1"
+                                      DataContext="{Binding}"/>
 
-        <local:BubbleContent Grid.Row="1"
-                             Panel.ZIndex="2"
-                             DataContext="{Binding AttachmentMenu}"
-                             VerticalAlignment="Bottom"
-                             HorizontalAlignment="Left"
-                             local:AnimateSlideInFromBottomProperty.Value="{Binding ViewModel.AttachmentMenuVisible ,RelativeSource={RelativeSource FindAncestor ,AncestorType={x:Type local:ChatPage}}}"/>
+        <Border 
+            Grid.Row="1"
+            Panel.ZIndex="2"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            local:AnimateSlideInFromBottomProperty.Value="{Binding AttachmentMenuVisible}">
+            <local:BubbleContent DataContext="{Binding AttachmentMenu}"/>
+        </Border>
+
+        
 
         
 

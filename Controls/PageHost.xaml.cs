@@ -30,8 +30,7 @@ namespace NewProject
 
             if (DesignerProperties.GetIsInDesignMode(this))
             {
-                NewPage.Content =
-                    (BasePage) new ApplicationPageValueConverter().Convert(IoC.Get<ApplicationViewModel>().CurrentPage);
+                NewPage.Content = IoC.Get<ApplicationViewModel>().CurrentPage.ToBasePage();
             }
         }
 
@@ -43,9 +42,9 @@ namespace NewProject
         /// <summary>
         /// the current page to show in the page host
         /// </summary>
-        public BasePage CurrentPage
+        public ApplicationPage CurrentPage
         {
-            get => (BasePage)GetValue(CurrentPageProperty);
+            get => (ApplicationPage)GetValue(CurrentPageProperty);
             set => SetValue(CurrentPageProperty, value);
         }
 
@@ -53,19 +52,48 @@ namespace NewProject
         /// registers  CURRENT PAGE as a dependency property
         /// </summary>
         public static readonly DependencyProperty CurrentPageProperty =
-            DependencyProperty.Register(nameof(CurrentPage), typeof(BasePage), typeof(PageHost), new UIPropertyMetadata(CurrentPagePropertyChanged));
+            DependencyProperty.Register(nameof(CurrentPage), typeof(ApplicationPage), typeof(PageHost), new UIPropertyMetadata(default(ApplicationPage),null,CurrentPagePropertyChanged));
 
+        /// <summary>
+        /// the current page to show in the page host
+        /// </summary>
+        public BaseViewModel CurrentPageViewModel
+        {
+            get => (BaseViewModel)GetValue(CurrentPageViewModelProperty);
+            set => SetValue(CurrentPageViewModelProperty, value);
+        }
+
+        /// <summary>
+        /// registers  CURRENT PAGE as a dependency property
+        /// </summary>
+        public static readonly DependencyProperty CurrentPageViewModelProperty =
+            DependencyProperty.Register(nameof(CurrentPageViewModel), 
+                typeof(BaseViewModel), 
+                typeof(PageHost), 
+                new UIPropertyMetadata());
 
         #endregion
 
 
         #region Propert Changed Events
 
-        private static void CurrentPagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static object CurrentPagePropertyChanged(DependencyObject d, object value)
         {
+            var currentPage = (ApplicationPage)d.GetValue(CurrentPageProperty);
+            var currentPageViewModel = d.GetValue(CurrentPageViewModelProperty);
+
             //get the frames
             var newPageFrame = (d as PageHost).NewPage;
             var oldPageFrame = (d as PageHost).OldPage;
+
+            // If the current hasn't changed update
+            if (newPageFrame.Content is BasePage page && page.ToApplicationPage() == currentPage)
+            {
+                //Update the view model
+                page.ViewModelObject = currentPageViewModel;
+            
+                return value;
+            }
 
             //store the current page content as the old page
             var oldPageContent = newPageFrame.Content;
@@ -90,9 +118,10 @@ namespace NewProject
             }
             
             //set the new page content
-            newPageFrame.Content = e.NewValue;
+            newPageFrame.Content = currentPage.ToBasePage(currentPageViewModel);
 
-            #endregion
+            return value;
         }
+        #endregion
     }
 }

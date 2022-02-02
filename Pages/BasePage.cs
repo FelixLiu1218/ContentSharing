@@ -15,6 +15,12 @@ namespace NewProject
     /// </summary>
     public class BasePage : UserControl
     {
+        #region Private menber
+
+        private object _viewModel;
+
+        #endregion
+
         #region Public Properties
 
         public PageAnimation PageLoadAnimation { get; set; } = PageAnimation.SlideAndFadeInFromRight;
@@ -28,6 +34,26 @@ namespace NewProject
         /// when we are moving the page to another frame
         /// </summary>
         public bool ShouldAnimateOut { get; set; }
+
+        /// <summary>
+        /// the view model associated with this page
+        /// </summary>
+        public object ViewModelObject
+        {
+            get => _viewModel;
+            set
+            {
+                if (_viewModel == value) return;
+
+                _viewModel = value;
+
+                //View model change
+                OnViewModelChanged();
+
+                //set the data context for this page
+                DataContext = _viewModel;
+            }
+        }
 
         #endregion
 
@@ -95,44 +121,37 @@ namespace NewProject
                 case PageAnimation.SlideAndFadeOutToLeft:
 
                     //Start the animation
-                    await this.SlideAndFadeOut(AnimationSlideInDirection.Right, SlideSeconds);
+                    await this.SlideAndFadeOut(AnimationSlideInDirection.Left, SlideSeconds);
 
                     break;
             }
         }
 
         #endregion
+
+        /// <summary>
+        /// Fired when the view model changes
+        /// </summary>
+        protected virtual void OnViewModelChanged()
+        {
+
+        }
+
     }
 
     public class BasePage<VM> : BasePage
         where VM:BaseViewModel,new()
 
     {
-
-        #region Private menber
-
-        private VM _viewModel;
-
-        #endregion
-
-
         #region Public Properties
 
         /// <summary>
-        /// the view model associated with this page
+        /// 
         /// </summary>
         public VM ViewModel
         {
-            get => _viewModel; 
-            set
-            {
-                if (_viewModel == value) return;
-
-                _viewModel = value;
-
-                //set the data context for this page
-                DataContext = _viewModel;
-            }
+            get => (VM) ViewModelObject;
+            set => ViewModelObject = value;
         }
 
         #endregion
@@ -140,10 +159,23 @@ namespace NewProject
 
         #region Constructor
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public BasePage() : base()
         {
             //default view model
-            ViewModel = new VM();
+            ViewModel = IoC.Get<VM>();
+        }
+
+        public BasePage(VM specificViewModel =null) : base()
+        {
+            //Set specific view model
+            if (specificViewModel != null)
+                ViewModel = specificViewModel;
+            else
+                //default view model
+                ViewModel = IoC.Get<VM>();
         }
 
             #endregion

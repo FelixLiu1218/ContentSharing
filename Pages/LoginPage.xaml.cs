@@ -14,7 +14,18 @@ namespace NewProject
     /// </summary>
     public partial class LoginPage : BasePage<LoginViewModel>,IHavePassword
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public LoginPage()
+        {
+            InitializeComponent();
+        }
+
+        /// <summary>
+        /// Constructor whit specific view model
+        /// </summary>
+        public LoginPage(LoginViewModel specificViewModel) : base(specificViewModel)
         {
             InitializeComponent();
         }

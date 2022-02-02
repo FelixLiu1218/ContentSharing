@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:NewProject"
              xmlns:core="clr-namespace:NewProject.Core;assembly=NewProject.Core"
              mc:Ignorable="d" 
-             Height="60"
-             d:DesignHeight="60" d:DesignWidth="225">
+             Height="65"
+             d:DesignHeight="70" d:DesignWidth="225">
 
     <UserControl.Resources>
         <Style x:Key="ContentStyle" TargetType="{x:Type ContentControl}">
@@ -15,7 +15,15 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ContentControl}">
 
-                        <Border x:Name="background" Background="{StaticResource ForegroundLightBrush}">
+                        <!-- Content -->
+                        <Border x:Name="background"
+
+                                Background="{StaticResource ForegroundLightBrush}">
+                            
+                            <Border.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding OpenMessageCommand}" />
+                            </Border.InputBindings>
+
                             <Grid x:Name="Container" Background="Transparent">
                                 <Grid.ColumnDefinitions>
                                     <!-- new message -->
@@ -55,8 +63,11 @@
                                 <!-- Content -->
                                 <Border Grid.Column="1" Padding="8">
                                     <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                        <TextBlock Text="{Binding Name}" Foreground="{StaticResource WordBlueBrush}"/>
+                                        <TextBlock Text="{Binding Name}"
+                                                   FontSize="{StaticResource FontSizeLargerRegular}"
+                                                   Foreground="{StaticResource WordBlueBrush}"/>
                                         <TextBlock Text="{Binding Message}"
+                                                   FontSize="{StaticResource FontSizeRegular}"
                                                TextTrimming="CharacterEllipsis"/>
                                     </StackPanel>
                                 </Border>

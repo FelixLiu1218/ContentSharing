@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mime;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media.Animation;
 
 namespace NewProject
@@ -46,8 +49,8 @@ namespace NewProject
 
                 // Start off hidden before we decide how to animate
                 // if we are to be animated out initially
-                if (!(bool)value)
-                    element.Visibility = Visibility.Hidden;
+                //if (!(bool)value)
+                element.Visibility = Visibility.Hidden;
 
                 // Create a single self-unhookable event 
                 // for the elements Loaded event
@@ -88,6 +91,31 @@ namespace NewProject
     }
 
     /// <summary>
+    /// Fade in an image
+    /// </summary>
+    public class ImageFadeInProperty : AnimateBaseProperty<ImageFadeInProperty>
+    {
+        public override void OnValueUpdated(DependencyObject sender, object value)
+        {
+            //if image doesn't exist false
+            if (!(sender is Image image))
+                return;
+
+            if ((bool) value)
+                image.TargetUpdated += Image_TargetUpdated;
+            else
+            {
+                image.TargetUpdated -= Image_TargetUpdated;
+            }
+        }
+
+        private async void Image_TargetUpdated(object sender, DataTransferEventArgs e)
+        {
+            await (sender as Image).FadeIn(false);
+        }
+    }
+
+    /// <summary>
     /// Animates a framework element sliding it in from the left on show
     /// and sliding out to the left on hide
     /// </summary>
@@ -97,10 +125,10 @@ namespace NewProject
         {
             if (value)
                 // Animate in
-                await element.SlideAndFadeIn(AnimationSlideInDirection.Left, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: false);
+                await element.SlideFadeIn(AnimationInDirection.Left, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: false);
             else
                 // Animate out
-                await element.SlideAndFadeOut(AnimationSlideInDirection.Left, firstLoad ? 0 : 0.3f, keepMargin: false);
+                await element.SlideFadeOut(AnimationInDirection.Left, firstLoad ? 0 : 0.3f, keepMargin: false);
         }
     }
 
@@ -114,10 +142,23 @@ namespace NewProject
         {
             if (value)
                 // Animate in
-                await element.SlideAndFadeIn(AnimationSlideInDirection.Bottom, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: false);
+                await element.SlideFadeIn(AnimationInDirection.Bottom, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: false);
             else
                 // Animate out
-                await element.SlideAndFadeOut(AnimationSlideInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: false);
+                await element.SlideFadeOut(AnimationInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: false);
+        }
+    }
+
+    /// <summary>
+    /// Animates a framework element sliding up from the bottom on show
+    /// and sliding out to the bottom on hide
+    /// </summary>
+    public class MessageAnimateSlideInFromBottomProperty : AnimateBaseProperty<MessageAnimateSlideInFromBottomProperty>
+    {
+        protected override async void DoAnimation(FrameworkElement element, bool value, bool firstLoad)
+        {
+            // Animate In
+            await element.SlideFadeIn(AnimationInDirection.Bottom, !value, !value ? 0 : 0.3f, keepMargin: true);
         }
     }
 
@@ -132,10 +173,10 @@ namespace NewProject
         {
             if (value)
                 // Animate in
-                await element.SlideAndFadeIn(AnimationSlideInDirection.Bottom, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: true);
+                await element.SlideFadeIn(AnimationInDirection.Bottom, firstLoad, firstLoad ? 0 : 0.3f, keepMargin: true);
             else
                 // Animate out
-                await element.SlideAndFadeOut(AnimationSlideInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: true);
+                await element.SlideFadeOut(AnimationInDirection.Bottom, firstLoad ? 0 : 0.3f, keepMargin: true);
         }
     }
 
@@ -153,18 +194,6 @@ namespace NewProject
             else
                 // Animate out
                 await element.FadeOut(firstLoad ? 0 : 0.3f);
-        }
-    }
-
-    /// <summary>
-    /// Animates a framework element sliding it from right to left and repeating forever
-    /// </summary>
-    public class AnimateMarqueeProperty : AnimateBaseProperty<AnimateMarqueeProperty>
-    {
-        protected override void DoAnimation(FrameworkElement element, bool value, bool firstLoad)
-        {
-            // Animate in
-            element.Marquee(firstLoad ? 0 : 3f);
         }
     }
 }

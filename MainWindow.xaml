@@ -14,6 +14,7 @@
         Title="Sharing" Height="600" Width="800">
 
 
+
     <Border BorderThickness=" 0 0.4 0 0" BorderBrush="{StaticResource ForegroundDarkBrush}">
         <Grid>
 
